@@ -14,7 +14,7 @@ def ack_incident():
         'Content-type': 'application/json',
     }
     r = requests.put(
-                    'https://{0}.pagerduty.com/api/v1/incidents/{0}/acknowledge'.format(SUBDOMAIN, INCIDENT_ID),
+                    'https://{0}.pagerduty.com/api/v1/incidents/{1}/acknowledge?requester_id={2}'.format(SUBDOMAIN, INCIDENT_ID, REQUESTER_ID),
                     headers=headers,
     )
     print r.status_code
