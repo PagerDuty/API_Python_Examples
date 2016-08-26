@@ -14,7 +14,7 @@ def reassign_incident():
         'Content-type': 'application/json',
     }
     r = requests.put(
-                    'https://{0}.pagerduty.com/api/v1/incidents/{0}/reassign'.format(SUBDOMAIN, INCIDENT_ID),
+                    'https://{0}.pagerduty.com/api/v1/incidents/{1}/reassign'.format(SUBDOMAIN, INCIDENT_ID),
                     headers=headers,
     )
     print r.status_code
