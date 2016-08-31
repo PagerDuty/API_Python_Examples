@@ -46,16 +46,12 @@ TEAMS = []
 LAYER_ONE_START = '2016-05-23T18:00:00-07:00'
 LAYER_ONE_END = '2016-06-23T18:00:00-07:00'
 LAYER_ONE_USERS = [{
-    'user': {
-        'id': 'PAZZ8LZ',
-        'type': 'user_reference'
-    }
+    'id': 'PAZZ8LZ',
+    'type': 'user_reference'
 },
 {
-    'user': {
-        'id': 'P1PJUIZ',
-        'type': 'user_reference'
-    }
+    'id': 'P1PJUIZ',
+    'type': 'user_reference'
 }]
 LAYER_ONE_RESTRICTION_TYPE = 'Daily'
 LAYER_ONE_RESTRICTIONS = []
