@@ -63,16 +63,12 @@ LAYER_ONE_NAME = 'Insert layer one name here'
 LAYER_TWO_START = '2016-05-23T18:00:00-07:00'
 LAYER_TWO_END = '2016-06-23T18:00:00-07:00'
 LAYER_TWO_USERS = [{
-    'user': {
-        'id': 'POC4AOM',
-        'type': 'user_reference'
-    }
+    'id': 'POC4AOM',
+    'type': 'user_reference'
 },
 {
-    'user': {
-        'id': 'PLUWO2C',
-        'type': 'user_reference'
-    }
+    'id': 'PLUWO2C',
+    'type': 'user_reference'
 }]
 LAYER_TWO_RESTRICTION_TYPE = 'Weekly'
 LAYER_TWO_RESTRICTIONS = []
