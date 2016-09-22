@@ -14,10 +14,10 @@
 #       names of its contributors may be used to endorse or promote products
 #       derived from this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-# DISCLAIMED. IN NO EVENT SHALL PAGERDUTY INC BE LIABLE FOR ANY
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL PAGERDUTY INC BE LIABLE FOR ANY
 # DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 # (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 # LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -35,9 +35,10 @@ API_KEY = '3c3gRvzx7uGfMYEnWKvF'
 ID = 'P0H7Y7J'
 
 # Update to match your chosen parameters
-TYPE = 'email_contact_method' # Can be one of email_contact_method, sms_contact_method, phone_contact_method, or push_notification_contact_method
+TYPE = 'email_contact_method'  # Can be one of email_contact_method, sms_contact_method, phone_contact_method, or push_notification_contact_method  # NOQA
 ADDRESS = 'insert_email@here.com'
 LABEL = 'Work'
+
 
 def create_user_contact_method():
     url = 'https://api.pagerduty.com/users/' + ID + '/contact_methods'

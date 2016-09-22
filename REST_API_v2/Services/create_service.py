@@ -14,10 +14,10 @@
 #       names of its contributors may be used to endorse or promote products
 #       derived from this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-# DISCLAIMED. IN NO EVENT SHALL PAGERDUTY INC BE LIABLE FOR ANY
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL PAGERDUTY INC BE LIABLE FOR ANY
 # DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 # (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 # LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -36,10 +36,10 @@ NAME = 'Insert service name here'
 DESCRIPTION = 'Insert service description here'
 ESCALATION_POLICY_ID = 'PIX2DN3'
 TYPE = 'service'
-AUTO_RESOLVE_TIMEOUT = 14400 # 4 hours
-ACKNOWLEDGEMENT_TIMEOUT = 1800 # 30 minutes
+AUTO_RESOLVE_TIMEOUT = 14400  # 4 hours
+ACKNOWLEDGEMENT_TIMEOUT = 1800  # 30 minutes
 TEAMS = []
-INCIDENT_URGENCY = 'high' # if using support hours, this urgency is used during support hours
+INCIDENT_URGENCY = 'high'  # used during support hours or as default urgency
 OUTSIDE_SUPPORT_HOURS_URGENCY = 'low'
 SCHEDULED_ACTIONS = []
 SUPPORT_HOURS = {
@@ -51,6 +51,7 @@ SUPPORT_HOURS = {
 }
 INTEGRATIONS = []
 ADDONS = []
+
 
 def create_service():
     url = 'https://api.pagerduty.com/services'
@@ -77,7 +78,7 @@ def create_service():
             'support_hours': SUPPORT_HOURS
         }
     }
-    if SUPPORT_HOURS == None:
+    if not SUPPORT_HOURS:
         payload['service']['incident_urgency_rule'] = {
             'type': 'constant',
             'urgency': INCIDENT_URGENCY
