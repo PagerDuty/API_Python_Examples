@@ -26,7 +26,6 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import requests
-import json
 
 # Update to match your API key
 API_KEY = '3c3gRvzx7uGfMYEnWKvF'
@@ -55,17 +54,17 @@ def list_incidents():
         'since': SINCE,
         'until': UNTIL,
         'date_range': DATE_RANGE,
-        'statuses': STATUSES,
+        'statuses[]': STATUSES,
         'incident_key': INCIDENT_KEY,
-        'service_ids': SERVICE_IDS,
-        'team_ids': TEAM_IDS,
-        'user_ids': USER_IDS,
-        'urgencies': URGENCIES,
+        'service_ids[]': SERVICE_IDS,
+        'team_ids[]': TEAM_IDS,
+        'user_ids[]': USER_IDS,
+        'urgencies[]': URGENCIES,
         'time_zone': TIME_ZONE,
-        'sort_by': SORT_BY,
-        'include': INCLUDE
+        'sort_by[]': SORT_BY,
+        'include[]': INCLUDE
     }
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 
