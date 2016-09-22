@@ -36,20 +36,14 @@ EMAIL = 'lucas@pagerduty.com'
 
 # Update to match your chosen parameters for each incident
 INCIDENT_ONE_ID = 'P1DIBFS'
-INCIDENT_ONE_TYPE = 'incident'
-INCIDENT_ONE_SUMMARY = 'Enter your incident one summary here'
 INCIDENT_ONE_STATUS = 'resolved'
-INCIDENT_ONE_ESCALATION_LEVEL = 1
-INCIDENT_ONE_ASSIGNED_TO_USER = ''
-INCIDENT_ONE_ESCALATION_POLICY = ''
+INCIDENT_ONE_ASSIGNEE_ID = ''
+INCIDENT_ONE_ASSIGNEE_TYPE = ''
 
 INCIDENT_TWO_ID = 'PKSPVAW'
-INCIDENT_TWO_TYPE = 'incident'
-INCIDENT_TWO_SUMMARY = 'Enter your incident two summary here'
 INCIDENT_TWO_STATUS = 'resolved'
-INCIDENT_TWO_ESCALATION_LEVEL = 1
-INCIDENT_TWO_ASSIGNED_TO_USER = ''
-INCIDENT_TWO_ESCALATION_POLICY = ''
+INCIDENT_TWO_ASSIGNEE_ID = ''
+INCIDENT_TWO_ASSIGNEE_TYPE = ''
 
 def manage_incidents():
     url = 'https://api.pagerduty.com/incidents'
@@ -60,24 +54,30 @@ def manage_incidents():
         'From': EMAIL
     }
     payload = {
-        'incidents': [{
-            'id': INCIDENT_ONE_ID,
-            'type': INCIDENT_ONE_TYPE,
-            'summary': INCIDENT_ONE_SUMMARY,
-            'status': INCIDENT_ONE_STATUS,
-            'escalation_level': INCIDENT_ONE_ESCALATION_LEVEL,
-            'assigned_to_user': INCIDENT_ONE_ASSIGNED_TO_USER,
-            'escalation_policy': INCIDENT_ONE_ESCALATION_POLICY
-        },
-        {
-            'id': INCIDENT_TWO_ID,
-            'type': INCIDENT_TWO_TYPE,
-            'summary': INCIDENT_TWO_SUMMARY,
-            'status': INCIDENT_TWO_STATUS,
-            'escalation_level': INCIDENT_TWO_ESCALATION_LEVEL,
-            'assigned_to_user': INCIDENT_TWO_ASSIGNED_TO_USER,
-            'escalation_policy': INCIDENT_TWO_ESCALATION_POLICY
-        }]
+        'incidents': [
+            {
+                'id': INCIDENT_ONE_ID,
+                'type': 'incident',
+                'status': INCIDENT_ONE_STATUS,
+                'assigments': [{
+                    'assignee': {
+                        'id': INCIDENT_ONE_ASSIGNEE_ID,
+                        'type': INCIDENT_ONE_ASSIGNEE_TYPE
+                    }
+                }]
+            },
+            {
+                'id': INCIDENT_TWO_ID,
+                'type': 'incident',
+                'status': INCIDENT_TWO_STATUS,
+                'assignments': [{
+                    'assignee': {
+                        'id': INCIDENT_TWO_ASSIGNEE_ID,
+                        'type': INCIDENT_TWO_ASSIGNEE_TYPE
+                    }
+                }]
+            }
+        ]
     }
     r = requests.put(url, headers=headers, data=json.dumps(payload))
     print 'Status Code: ' + str(r.status_code)
