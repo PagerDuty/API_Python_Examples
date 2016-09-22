@@ -14,10 +14,10 @@
 #       names of its contributors may be used to endorse or promote products
 #       derived from this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-# DISCLAIMED. IN NO EVENT SHALL PAGERDUTY INC BE LIABLE FOR ANY
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL PAGERDUTY INC BE LIABLE FOR ANY
 # DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 # (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 # LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -48,45 +48,50 @@ TEAMS = []
 # Update to match your chosen parameters for each schedule layer
 LAYER_ONE_START = '2016-05-23T18:00:00-07:00'
 LAYER_ONE_END = '2016-06-23T18:00:00-07:00'
-LAYER_ONE_USERS = [{
-    'user': {
-        'id': 'PIZFCCH',
-        'type': 'user_reference'
+LAYER_ONE_USERS = [
+    {
+        'user': {
+            'id': 'PIZFCCH',
+            'type': 'user_reference'
+        }
+    },
+    {
+        'user': {
+            'id': 'P1PJUIZ',
+            'type': 'user_reference'
+        }
     }
-},
-{
-    'user': {
-        'id': 'P1PJUIZ',
-        'type': 'user_reference'
-    }
-}]
+]
 LAYER_ONE_RESTRICTION_TYPE = 'Daily'
 LAYER_ONE_RESTRICTIONS = []
 LAYER_ONE_ROTATION_VIRTUAL_START = '2016-05-23T18:00:00-07:00'
 LAYER_ONE_PRIORITY = 1
-LAYER_ONE_ROTATION_TURN_LENGTH_SECONDS = 60 * 60 * 24 # 24 hours
+LAYER_ONE_ROTATION_TURN_LENGTH_SECONDS = 60 * 60 * 24  # 24 hours
 LAYER_ONE_NAME = 'Insert layer one name here'
 
 LAYER_TWO_START = '2016-05-23T18:00:00-07:00'
 LAYER_TWO_END = '2016-06-23T18:00:00-07:00'
-LAYER_TWO_USERS = [{
-    'user': {
-        'id': 'POC4AOM',
-        'type': 'user_reference'
+LAYER_TWO_USERS = [
+    {
+        'user': {
+            'id': 'POC4AOM',
+            'type': 'user_reference'
+        }
+    },
+    {
+        'user': {
+            'id': 'PLUWO2C',
+            'type': 'user_reference'
+        }
     }
-},
-{
-    'user': {
-        'id': 'PLUWO2C',
-        'type': 'user_reference'
-    }
-}]
+]
 LAYER_TWO_RESTRICTION_TYPE = 'Weekly'
 LAYER_TWO_RESTRICTIONS = []
 LAYER_TWO_ROTATION_VIRTUAL_START = '2016-05-23T18:00:00-07:00'
 LAYER_TWO_PRIORITY = 1
-LAYER_TWO_ROTATION_TURN_LENGTH_SECONDS = 60 * 60 * 24 # 24 hours
+LAYER_TWO_ROTATION_TURN_LENGTH_SECONDS = 60 * 60 * 24  # 24 hours
 LAYER_TWO_NAME = 'Insert layer two name here'
+
 
 def update_schedule():
     url = 'https://api.pagerduty.com/schedules/' + ID
@@ -104,28 +109,32 @@ def update_schedule():
             'time_zone': TIME_ZONE,
             'escalation_policies': ESCALATION_POLICIES,
             'teams': TEAMS,
-            'schedule_layers': [{
-                'start': LAYER_ONE_START,
-                'end': LAYER_ONE_END,
-                'users': LAYER_ONE_USERS,
-                'restriction_type': LAYER_ONE_RESTRICTION_TYPE,
-                'restrictions': LAYER_ONE_RESTRICTIONS,
-                'rotation_virtual_start': LAYER_ONE_ROTATION_VIRTUAL_START,
-                'priority': LAYER_ONE_PRIORITY,
-                'rotation_turn_length_seconds': LAYER_ONE_ROTATION_TURN_LENGTH_SECONDS,
-                'name': LAYER_ONE_NAME
-            },
-            {
-                'start': LAYER_TWO_START,
-                'end': LAYER_TWO_END,
-                'users': LAYER_TWO_USERS,
-                'restriction_type': LAYER_TWO_RESTRICTION_TYPE,
-                'restrictions': LAYER_TWO_RESTRICTIONS,
-                'rotation_virtual_start': LAYER_TWO_ROTATION_VIRTUAL_START,
-                'priority': LAYER_TWO_PRIORITY,
-                'rotation_turn_length_seconds': LAYER_TWO_ROTATION_TURN_LENGTH_SECONDS,
-                'name': LAYER_TWO_NAME
-            }]
+            'schedule_layers': [
+                {
+                    'start': LAYER_ONE_START,
+                    'end': LAYER_ONE_END,
+                    'users': LAYER_ONE_USERS,
+                    'restriction_type': LAYER_ONE_RESTRICTION_TYPE,
+                    'restrictions': LAYER_ONE_RESTRICTIONS,
+                    'rotation_virtual_start': LAYER_ONE_ROTATION_VIRTUAL_START,
+                    'priority': LAYER_ONE_PRIORITY,
+                    'rotation_turn_length_seconds':
+                    LAYER_ONE_ROTATION_TURN_LENGTH_SECONDS,
+                    'name': LAYER_ONE_NAME
+                },
+                {
+                    'start': LAYER_TWO_START,
+                    'end': LAYER_TWO_END,
+                    'users': LAYER_TWO_USERS,
+                    'restriction_type': LAYER_TWO_RESTRICTION_TYPE,
+                    'restrictions': LAYER_TWO_RESTRICTIONS,
+                    'rotation_virtual_start': LAYER_TWO_ROTATION_VIRTUAL_START,
+                    'priority': LAYER_TWO_PRIORITY,
+                    'rotation_turn_length_seconds':
+                    LAYER_TWO_ROTATION_TURN_LENGTH_SECONDS,
+                    'name': LAYER_TWO_NAME
+                }
+            ]
         }
     }
     r = requests.put(url, headers=headers, data=json.dumps(payload))
