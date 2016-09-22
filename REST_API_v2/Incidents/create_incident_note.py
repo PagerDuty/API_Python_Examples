@@ -38,7 +38,7 @@ EMAIL = 'lucas@pagerduty.com'
 INCIDENT_ID = 'PI8BBP5'
 CONTENT = 'Enter your note content here'
 
-def get_incident():
+def create_incident_note():
     url = 'https://api.pagerduty.com/incidents/' + INCIDENT_ID + '/notes'
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
@@ -56,4 +56,4 @@ def get_incident():
     print r.json()
 
 if __name__ == '__main__':
-    get_incident()
+    create_incident_note()
