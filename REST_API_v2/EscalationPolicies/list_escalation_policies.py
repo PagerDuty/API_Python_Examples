@@ -46,12 +46,12 @@ def list_escalation_policies():
     }
     payload = {
         'query': QUERY,
-        'user_ids': USER_IDS,
-        'team_ids': TEAM_IDS,
-        'include': INCLUDE,
+        'user_ids[]': USER_IDS,
+        'team_ids[]': TEAM_IDS,
+        'include[]': INCLUDE,
         'sort_by': SORT_BY
     }
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 

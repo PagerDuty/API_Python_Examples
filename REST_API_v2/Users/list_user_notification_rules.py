@@ -44,7 +44,7 @@ def list_user_notification_rules():
         'Authorization': 'Token token=' + API_KEY
     }
     payload = {
-        'include': INCLUDE
+        'include[]': INCLUDE
     }
     r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)

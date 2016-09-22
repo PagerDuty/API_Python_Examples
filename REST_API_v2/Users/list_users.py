@@ -44,10 +44,10 @@ def list_users():
     }
     payload = {
         'query': QUERY,
-        'team_ids': TEAM_IDS,
-        'include': INCLUDE
+        'team_ids[]': TEAM_IDS,
+        'include[]': INCLUDE
     }
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 

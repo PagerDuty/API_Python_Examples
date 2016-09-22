@@ -46,9 +46,9 @@ def get_incident():
     payload = {
         'time_zone': TIME_ZONE,
         'is_overview': IS_OVERVIEW,
-        'include': INCLUDE
+        'include[]': INCLUDE
     }
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 
