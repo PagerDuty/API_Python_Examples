@@ -41,10 +41,12 @@ OVERFLOW = False
 
 
 def list_overrides():
-    url = 'https://api.pagerduty.com/schedules/' + SCHEDULE_ID + '/overrides'
+    url = 'https://api.pagerduty.com/schedules/{id}/overrides'.format(
+        id=SCHEDULE_ID
+    )
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     payload = {
         'since': SINCE,
@@ -53,7 +55,7 @@ def list_overrides():
         'overflow': OVERFLOW
     }
     r = requests.get(url, headers=headers, params=payload)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

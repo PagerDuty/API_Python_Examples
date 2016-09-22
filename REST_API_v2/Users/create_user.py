@@ -44,7 +44,7 @@ def create_user():
     url = 'https://api.pagerduty.com/users'
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json',
         'From': PD_EMAIL
     }
@@ -57,7 +57,7 @@ def create_user():
         }
     }
     r = requests.post(url, headers=headers, data=json.dumps(payload))
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

@@ -36,14 +36,16 @@ OVERRIDE_ID = 'Q0PVCKPSTNQUGG'
 
 
 def delete_override():
-    url = 'https://api.pagerduty.com/schedules/' + SCHEDULE_ID + '/overrides/'
-    + OVERRIDE_ID
+    url = 'https://api.pagerduty.com/schedules/{sid}/overrides/{oid}'.format(
+        sid=SCHEDULE_ID,
+        oid=OVERRIDE_ID
+    )
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     r = requests.delete(url, headers=headers)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.text
 
 if __name__ == '__main__':

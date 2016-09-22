@@ -41,10 +41,10 @@ LABEL = 'Work'
 
 
 def create_user_contact_method():
-    url = 'https://api.pagerduty.com/users/' + ID + '/contact_methods'
+    url = 'https://api.pagerduty.com/users/{id}/contact_methods'.format(id=ID)
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json'
     }
     payload = {
@@ -55,7 +55,7 @@ def create_user_contact_method():
         }
     }
     r = requests.post(url, headers=headers, data=json.dumps(payload))
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

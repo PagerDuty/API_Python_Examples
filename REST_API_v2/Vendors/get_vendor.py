@@ -35,13 +35,13 @@ ID = 'PYFMET1'
 
 
 def get_vendor():
-    url = 'https://api.pagerduty.com/vendors/' + ID
+    url = 'https://api.pagerduty.com/vendors/{id}'.format(id=ID)
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     r = requests.get(url, headers=headers)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

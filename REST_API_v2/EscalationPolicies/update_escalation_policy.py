@@ -40,21 +40,25 @@ NAME = 'Insert resource name here'
 SUMMARY = 'Insert resource description here'
 REPEAT_ENABLED = True
 NUM_LOOPS = 3
-ESCALATION_RULES = [{
-    'escalation_delay_in_minutes': 30,
-    'targets': [{
-        'type': 'schedule',
-        'id': 'PTC959G'
-    }]
-}]
+ESCALATION_RULES = [
+    {
+        'escalation_delay_in_minutes': 30,
+        'targets': [
+            {
+                'type': 'schedule',
+                'id': 'PTC959G'
+            }
+        ]
+    }
+]
 SERVICES = []
 
 
 def update_escalation_policy():
-    url = 'https://api.pagerduty.com/escalation_policies/' + ID
+    url = 'https://api.pagerduty.com/escalation_policies/{id}'.format(id=ID)
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json'
     }
     payload = {
@@ -69,7 +73,7 @@ def update_escalation_policy():
         }
     }
     r = requests.put(url, headers=headers, data=json.dumps(payload))
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

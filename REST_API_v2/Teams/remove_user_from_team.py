@@ -36,13 +36,16 @@ USER_ID = 'P0H7Y7J'
 
 
 def remove_user_from_team():
-    url = 'https://api.pagerduty.com/teams/' + TEAM_ID + '/users/' + USER_ID
+    url = 'https://api.pagerduty.com/teams/{tid}/users/{uid}'.format(
+        tid=TEAM_ID,
+        uid=USER_ID
+    )
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     r = requests.delete(url, headers=headers)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.text
 
 if __name__ == '__main__':

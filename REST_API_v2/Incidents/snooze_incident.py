@@ -40,10 +40,12 @@ CONTENT = 'Enter your note content here'
 
 
 def snooze_incident():
-    url = 'https://api.pagerduty.com/incidents/' + INCIDENT_ID + '/snooze'
+    url = 'https://api.pagerduty.com/incidents/{id}/snooze'.format(
+        id=INCIDENT_ID
+    )
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json',
         'From': EMAIL
     }
@@ -52,7 +54,7 @@ def snooze_incident():
         'duration': 60 * 60 * 24  # 24 hours
     }
     r = requests.post(url, headers=headers, data=json.dumps(payload))
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

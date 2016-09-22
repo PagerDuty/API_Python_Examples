@@ -96,7 +96,7 @@ def preview_schedule():
     url = 'https://api.pagerduty.com/schedules/preview'
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json'
     }
     payload = {
@@ -139,7 +139,7 @@ def preview_schedule():
         }
     }
     r = requests.post(url, headers=headers, data=json.dumps(payload))
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

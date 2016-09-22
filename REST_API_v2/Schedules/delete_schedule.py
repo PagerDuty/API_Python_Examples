@@ -35,13 +35,13 @@ ID = 'PQX3A8C'
 
 
 def delete_schedule():
-    url = 'https://api.pagerduty.com/schedules/' + ID
+    url = 'https://api.pagerduty.com/schedules/{id}'.format(id=ID)
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     r = requests.delete(url, headers=headers)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.text
 
 if __name__ == '__main__':

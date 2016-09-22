@@ -43,11 +43,11 @@ CONTACT_METHOD_TYPE = 'email_contact_method'
 
 
 def update_user_notification_rule():
-    url = ('https://api.pagerduty.com/users/' + USER_ID
-           + '/notification_rules/' + NOTIFICATION_RULE_ID)
+    url = ('https://api.pagerduty.com/users/{uid}/notification_rules/{nid}'
+           .format(uid=USER_ID, nid=NOTIFICATION_RULE_ID))
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json'
     }
     payload = {
@@ -62,7 +62,7 @@ def update_user_notification_rule():
         }
     }
     r = requests.put(url, headers=headers, data=json.dumps(payload))
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':
