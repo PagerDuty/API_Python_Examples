@@ -42,10 +42,10 @@ SERVICES = []
 
 
 def update_addon():
-    url = 'https://api.pagerduty.com/addons/' + ID
+    url = 'https://api.pagerduty.com/addons/{id}'.format(id=ID)
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json'
     }
     payload = {

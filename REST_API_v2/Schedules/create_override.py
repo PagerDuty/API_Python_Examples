@@ -41,10 +41,12 @@ END = '2016-07-01'
 
 
 def create_override():
-    url = 'https://api.pagerduty.com/schedules/' + SCHEDULE_ID + '/overrides'
+    url = 'https://api.pagerduty.com/schedules/{id}/overrides'.format(
+        id=SCHEDULE_ID
+    )
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json'
     }
     payload = {
@@ -58,7 +60,7 @@ def create_override():
         }
     }
     r = requests.post(url, headers=headers, data=json.dumps(payload))
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

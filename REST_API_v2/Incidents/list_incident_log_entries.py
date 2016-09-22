@@ -38,10 +38,12 @@ INCLUDE = []
 
 
 def get_incident():
-    url = 'https://api.pagerduty.com/incidents/' + INCIDENT_ID + '/log_entries'
+    url = 'https://api.pagerduty.com/incidents/{id}/log_entries'.format(
+        id=INCIDENT_ID
+    )
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     payload = {
         'time_zone': TIME_ZONE,
@@ -49,7 +51,7 @@ def get_incident():
         'include[]': INCLUDE
     }
     r = requests.get(url, headers=headers, params=payload)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

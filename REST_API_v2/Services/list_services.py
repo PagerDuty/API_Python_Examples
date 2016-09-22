@@ -42,7 +42,7 @@ def list_services():
     url = 'https://api.pagerduty.com/services'
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     payload = {
         'team_ids[]': TEAM_IDS,
@@ -52,7 +52,7 @@ def list_services():
         'include[]': INCLUDE
     }
     r = requests.get(url, headers=headers, params=payload)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

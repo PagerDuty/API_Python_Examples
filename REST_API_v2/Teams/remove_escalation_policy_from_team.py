@@ -36,14 +36,14 @@ ESCALATION_POLICY_ID = 'PZPCKNC'
 
 
 def remove_escalation_policy_from_team():
-    url = ('https://api.pagerduty.com/teams/' + TEAM_ID
-           + '/escalation_policies/' + ESCALATION_POLICY_ID)
+    url = ('https://api.pagerduty.com/teams/{tid}/escalation_policies/{eid}'
+           .format(tid=TEAM_ID, eid=ESCALATION_POLICY_ID))
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     r = requests.delete(url, headers=headers)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.text
 
 if __name__ == '__main__':

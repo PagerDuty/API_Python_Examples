@@ -36,14 +36,14 @@ NOTIFICATION_RULE_ID = 'PM0NWL3'
 
 
 def delete_user_notification_rule():
-    url = ('https://api.pagerduty.com/users/' + USER_ID
-           + '/notification_rules/' + NOTIFICATION_RULE_ID)
+    url = ('https://api.pagerduty.com/users/{uid}/notification_rules/{nid}'
+           .format(uid=USER_ID, nid=NOTIFICATION_RULE_ID))
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     r = requests.delete(url, headers=headers)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.text
 
 if __name__ == '__main__':

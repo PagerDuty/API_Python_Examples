@@ -41,11 +41,13 @@ SUMMARY = 'Insert your integration summary here'
 
 
 def update_integration():
-    url = ('https://api.pagerduty.com/services/' + SERVICE_ID
-           + '/integrations/' + INTEGRATION_ID)
+    url = 'https://api.pagerduty.com/services/{sid}/integrations/{iid}'.format(
+        sid=SERVICE_ID,
+        iid=INTEGRATION_ID
+    )
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY,
+        'Authorization': 'Token token={token}'.format(token=API_KEY),
         'Content-type': 'application/json'
     }
     payload = {
@@ -55,7 +57,7 @@ def update_integration():
         }
     }
     r = requests.put(url, headers=headers, data=json.dumps(payload))
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

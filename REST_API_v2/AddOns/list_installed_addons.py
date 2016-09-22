@@ -40,7 +40,7 @@ def list_installed_addons():
     url = 'https://api.pagerduty.com/addons'
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     payload = {
         'include[]': INCLUDE,
@@ -48,7 +48,7 @@ def list_installed_addons():
         'filter': FILTER
     }
     r = requests.get(url, headers=headers, params=payload)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':

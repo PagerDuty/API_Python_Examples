@@ -49,7 +49,7 @@ def list_incidents():
     url = 'https://api.pagerduty.com/incidents'
     headers = {
         'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token=' + API_KEY
+        'Authorization': 'Token token={token}'.format(token=API_KEY)
     }
     payload = {
         'since': SINCE,
@@ -66,7 +66,7 @@ def list_incidents():
         'include[]': INCLUDE
     }
     r = requests.get(url, headers=headers, params=payload)
-    print 'Status Code: ' + str(r.status_code)
+    print 'Status Code: {code}'.format(code=r.status_code)
     print r.json()
 
 if __name__ == '__main__':
