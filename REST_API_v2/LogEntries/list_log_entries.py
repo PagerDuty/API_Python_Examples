@@ -47,13 +47,13 @@ def list_log_entries():
     payload = {
         'time_zone': TIME_ZONE,
         'is_overview': IS_OVERVIEW,
-        'include': INCLUDE
+        'include[]': INCLUDE
     }
     if SINCE != '':
         payload['since'] = SINCE
     if UNTIL != '':
         payload['until'] = UNTIL
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 

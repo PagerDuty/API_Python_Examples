@@ -45,13 +45,13 @@ def list_services():
         'Authorization': 'Token token=' + API_KEY
     }
     payload = {
-        'team_ids': TEAM_IDS,
+        'team_ids[]': TEAM_IDS,
         'time_zone': TIME_ZONE,
         'sort_by': SORT_BY,
         'query': QUERY,
-        'include': INCLUDE
+        'include[]': INCLUDE
     }
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 

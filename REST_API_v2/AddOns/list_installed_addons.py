@@ -43,11 +43,11 @@ def list_installed_addons():
         'Authorization': 'Token token=' + API_KEY
     }
     payload = {
-        'include': INCLUDE,
-        'service_ids': SERVICE_IDS,
+        'include[]': INCLUDE,
+        'service_ids[]': SERVICE_IDS,
         'filter': FILTER
     }
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 

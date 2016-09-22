@@ -49,15 +49,15 @@ def list_oncalls():
     }
     payload = {
         'time_zone': TIME_ZONE,
-        'include': INCLUDE,
-        'user_ids': USER_IDS,
-        'escalation_policy_ids': ESCALATION_POLICY_IDS,
-        'schedule_ids': SCHEDULE_IDS,
+        'include[]': INCLUDE,
+        'user_ids[]': USER_IDS,
+        'escalation_policy_ids[]': ESCALATION_POLICY_IDS,
+        'schedule_ids[]': SCHEDULE_IDS,
         'since': SINCE,
         'until': UNTIL,
         'earliest': EARLIEST
     }
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 

@@ -44,9 +44,9 @@ def get_escalation_policy():
         'Authorization': 'Token token=' + API_KEY
     }
     payload = {
-        'include': INCLUDE
+        'include[]': INCLUDE
     }
-    r = requests.get(url, headers=headers, params=json.dumps(payload))
+    r = requests.get(url, headers=headers, params=payload)
     print 'Status Code: ' + str(r.status_code)
     print r.json()
 
