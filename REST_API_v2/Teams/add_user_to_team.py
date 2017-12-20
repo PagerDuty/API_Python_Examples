@@ -28,11 +28,11 @@
 import requests
 
 # Update to match your API key
-API_KEY = '3c3gRvzx7uGfMYEnWKvF'
+API_KEY = ''
 
 # Update to match your IDs
-TEAM_ID = 'PYYWGIO'
-USER_ID = 'P0H7Y7J'
+TEAM_ID = ''
+USER_ID = ''
 
 
 def add_user_to_team():
