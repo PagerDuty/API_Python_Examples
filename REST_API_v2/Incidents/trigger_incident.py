@@ -34,7 +34,7 @@ SERVICE_ID = ''
 FROM = ''
 
 def trigger_incident():
-    """Triggers an incident using the V2 REST API."""
+    """Triggers an incident via the V2 REST API using sample data."""
     
     url = 'https://api.pagerduty.com/incidents'
     headers = {
