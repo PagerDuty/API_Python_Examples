@@ -3,8 +3,8 @@
 import json
 import requests
 
-ROUTING_KEY = "257e6698a97046e19d15a44efb515106" # ENTER EVENTS V2 API INTEGRATION KEY HERE 
-INCIDENT_KEY = "455408afbf924327949920a87426758c" # ENTER INCIDENT KEY HERE 
+ROUTING_KEY = "" # ENTER EVENTS V2 API INTEGRATION KEY HERE 
+INCIDENT_KEY = "" # ENTER INCIDENT KEY HERE 
 
 def trigger_incident():
     # Triggers a PagerDuty incident without a previously generated incident key
