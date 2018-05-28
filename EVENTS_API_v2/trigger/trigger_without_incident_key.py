@@ -28,7 +28,7 @@ def trigger_incident():
                             headers=header)
 	
     if response.json()["status"] == "success":
-        print ('Incident created with with dedup key (also known as incident / alert key) of ' + '"' + response.json()['dedup_key'] + '"') #print dedup key if successful
+        print ('Incident created with with dedup key (also known as incident / alert key) of ' + '"' + response.json()['dedup_key'] + '"') 
     else:
         print response.text # print error message if not successful
 
