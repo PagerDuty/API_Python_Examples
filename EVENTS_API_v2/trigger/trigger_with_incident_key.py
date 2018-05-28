@@ -1,42 +1,38 @@
 #!/usr/bin/env python
+
 import json
 import requests
 
-
-SUBDOMAIN = "" # Enter your subdomain here
-API_ACCESS_KEY = "" # Enter your subdomain's API access key here
-
+ROUTING_KEY = "" # ENTER EVENTS V2 API INTEGRATION KEY HERE 
+INCIDENT_KEY = "" # ENTER INCIDENT KEY HERE 
 
 def trigger_incident():
-    """Triggers an incident with a previously generated incident key."""
+    # Triggers a PagerDuty incident without a previously generated incident key
+    # Uses Events V2 API - documentation: https://v2.developer.pagerduty.com/docs/send-an-event-events-api-v2
 
-    headers = {
-        'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token={0}'.format(API_ACCESS_KEY),
-        'Content-type': 'application/json',
+    header = {
+        "Content-Type": "application/json"
     }
 
-    payload = json.dumps({
-        "service_key": "", # Enter service key here
-        "incident_key": "srv01/HTTP",
-        "event_type": "trigger",
-        "description": "FAILURE for production/HTTP on machine srv01.acme.com",
-        "client": "Sample Monitoring Service",
-        "client_url": "https://monitoring.service.com",
-        "details": {
-            "ping time": "1500ms",
-            "load avg": 0.75
+    payload = { # Payload is built with the least amount of fields required to trigger an incident
+        "routing_key": ROUTING_KEY, 
+        "event_action": "trigger",
+        "dedup_key": INCIDENT_KEY,
+        "payload": {
+            "summary": "Example alert on host1.example.com",
+            "source": "monitoringtool:cloudvendor:central-region-dc-01:852559987:cluster/api-stats-prod-003",
+            "severity": "critical"
         }
-    })
+    }
 
-    r = requests.post('https://events.pagerduty.com/generic/2010-04-15/create_event.json',
-                      headers=headers,
-                      data=payload,
-    )
-
-    print r.status_code
-    print r.text
-
+    response = requests.post('https://events.pagerduty.com/v2/enqueue', 
+                            data=json.dumps(payload),
+                            headers=header)
+	
+    if response.json()["status"] == "success":
+        print ('Incident created with with dedup key (also known as incident / alert key) of ' + '"' + response.json()['dedup_key'] + '"') #print dedup key if successful
+    else:
+        print response.text # print error message if not successful
 
 if __name__ == '__main__':
     trigger_incident()

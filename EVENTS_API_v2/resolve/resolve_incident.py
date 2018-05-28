@@ -1,39 +1,33 @@
 #!/usr/bin/env python
+
 import json
 import requests
 
+ROUTING_KEY = "257e6698a97046e19d15a44efb515106" # ENTER EVENTS V2 API INTEGRATION KEY HERE 
+INCIDENT_KEY = "455408afbf924327949920a87426758c" # ENTER INCIDENT KEY HERE 
 
-SUBDOMAIN = "" # Enter your subdomain here
-API_ACCESS_KEY = "" # Enter your subdomain's API access key here
+def trigger_incident():
+    # Triggers a PagerDuty incident without a previously generated incident key
+    # Uses Events V2 API - documentation: https://v2.developer.pagerduty.com/docs/send-an-event-events-api-v2
 
-
-def resolve_incident():
-    """Resolves a PagerDuty incident using customer's API access key and incident key."""
-    
-    headers = {
-        'Accept': 'application/vnd.pagerduty+json;version=2',
-        'Authorization': 'Token token={0}'.format(API_ACCESS_KEY),
-        'Content-type': 'application/json',
+    header = {
+        "Content-Type": "application/json"
     }
-    
-    payload = json.dumps({
-              "service_key": "", # Enter service key here
-              "incident_key": "", # Enter incident key here
-              "event_type": "resolve",
-              "description": "Andrew fixed the problem.", # Enter personalized description
-              "details": {
-                "fixed at": "2010-06-10 06:00"
-              }
-    })
-    
-    r = requests.post('https://events.pagerduty.com/generic/2010-04-15/create_event.json',
-                      headers=headers,
-                      data=payload,
-    )
 
-    print r.status_code
-    print r.text
+    payload = { # Payload is built with the least amount of fields required to trigger an incident
+        "routing_key": ROUTING_KEY, 
+        "event_action": "resolve",
+        "dedup_key": INCIDENT_KEY
+    }
 
+    response = requests.post('https://events.pagerduty.com/v2/enqueue', 
+                            data=json.dumps(payload),
+                            headers=header)
+	
+    if response.json()["status"] == "success":
+        print ('Incident Resolved ')
+    else:
+        print response.text # print error message if not successful
 
 if __name__ == '__main__':
-    resolve_incident()
+    trigger_incident()
