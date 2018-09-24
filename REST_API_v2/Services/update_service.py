@@ -54,7 +54,10 @@ def update_service():
         'service': {
             'name': NAME,
             'description': DESCRIPTION,
-            'escalation_policy_id': ESCALATION_POLICY_ID,
+            'escalation_policy': {
+                'id': ESCALATION_POLICY_ID,
+                'type': 'escalation_policy_reference'
+            },
             'acknowledgement_timeout': ACKNOWLEDGEMENT_TIMEOUT,
             'auto_resolve_timeout': AUTO_RESOLVE_TIMEOUT,
             'severity_filter': SEVERITY_FILTER
