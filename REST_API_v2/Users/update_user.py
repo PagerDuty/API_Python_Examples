@@ -37,7 +37,7 @@ ID = 'P0TEZR0'
 # Update to match your chosen parameters
 NAME = 'Insert user name here'
 EMAIL = 'insert_email@here.com'
-ROLE = 'user'  # Can be one of admin, user, team_responder, limited_user, read_only_user  # NOQA
+ROLE = 'user'  # Can be one of admin, user, limited_user, read_only_user  # NOQA
 
 
 def update_user():
