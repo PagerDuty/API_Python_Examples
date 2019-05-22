@@ -41,7 +41,7 @@ TEAM_IDS = []
 USER_IDS = []
 URGENCIES = []
 TIME_ZONE = 'UTC'
-SORT_BY = []
+SORT_BY = '' # comma-delineated list; see https://v2.developer.pagerduty.com/docs/sorting
 INCLUDE = []
 
 
@@ -62,7 +62,7 @@ def list_incidents():
         'user_ids[]': USER_IDS,
         'urgencies[]': URGENCIES,
         'time_zone': TIME_ZONE,
-        'sort_by[]': SORT_BY,
+        'sort_by': SORT_BY,
         'include[]': INCLUDE
     }
     r = requests.get(url, headers=headers, params=payload)
