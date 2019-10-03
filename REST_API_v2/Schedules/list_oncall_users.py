@@ -38,7 +38,7 @@ SINCE = ''
 UNTIL = ''
 
 
-def list_overrides():
+def list_oncall_users():
     url = 'https://api.pagerduty.com/schedules/{id}/users'.format(
         id=SCHEDULE_ID
     )
@@ -56,4 +56,4 @@ def list_overrides():
     print(r.json())
 
 if __name__ == '__main__':
-    list_overrides()
+    list_oncall_users()
