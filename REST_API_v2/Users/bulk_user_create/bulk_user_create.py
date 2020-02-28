@@ -77,10 +77,10 @@ def create_users():
         print(payload)
         response = pd_session.post(ENDPOINT, data=payload)
         if response.status_code != 201:
-            raise Warning(("Failed to create user {}, process aborted. "
+            raise Warning("Failed to create user {}, process aborted. "
                 "Any previous users successfully created. Server responded with"
                 " status code {}."
-                .format(user.name, response.status_code)))
+                .format(user.name, response.status_code))
     print("Upload complete")
 
 
